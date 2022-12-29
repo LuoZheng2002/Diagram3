@@ -37,13 +37,10 @@ namespace Diagram3.ViewModels
             }
         }
         public ImageSource Image { get; set; }
-        public WrappedEvent DragEvent { get; }
-        public ICommand DragCommand { get; }
+        public Command DragCommand { get; }
         public DisplayTileViewModel()
         {
-            DragEvent = new WrappedEvent();
-            DragEvent.Add(OnDrag);
-            DragCommand = new Command(DragEvent);
+            DragCommand = new Command(OnDrag);
         }
         void OnDrag(object obj)
         {

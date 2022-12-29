@@ -68,7 +68,6 @@
     <Compile Include="Command.cs" />
     <Compile Include="IDiagramItem.cs" />
     <Compile Include="ISelectable.cs" />
-    <Compile Include="WrappedEvent.cs" />
     <Page Include="AdornerStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

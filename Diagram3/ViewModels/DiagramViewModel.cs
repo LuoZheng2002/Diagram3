@@ -23,10 +23,8 @@ namespace Diagram3.ViewModels
         public DisplayTileViewModel DisplayTile1 { get; }
         public DisplayTileViewModel DisplayTile2 { get; }
         public DisplayTileViewModel DisplayTile3 { get; }
-        public WrappedEvent DropEvent { get; }
-        public WrappedEvent ClickEvent { get; }
-        public ICommand DropCommand { get; }
-        public ICommand ClickCommand { get; }
+        public Command DropCommand { get; }
+        public Command ClickCommand { get; }
         public event Action CanvasClicked;
         public event Action<object> KeyDown;
         public DiagramViewModel(Model model)
@@ -36,12 +34,8 @@ namespace Diagram3.ViewModels
             DisplayTile1 = new DisplayTileViewModel() { Text = "PS", ImageName = "../Images/fufu.jpg" };
             DisplayTile2 = new DisplayTileViewModel() { Text = "H", ImageName = "../Images/53.jpg" };
             DisplayTile3 = new DisplayTileViewModel() { Text = "P", ImageName = "../Images/gua.jpg" };
-            DropEvent = new WrappedEvent();
-            ClickEvent = new WrappedEvent();
-            DropEvent.Add(OnDrop);
-            ClickEvent.Add(OnClick);
-            DropCommand = new Command(DropEvent);
-            ClickCommand = new Command(ClickEvent);
+            DropCommand = new Command(OnDrop);
+            ClickCommand = new Command(OnClick);
             DiagramItems = new ObservableCollection<UserControl>();
             DiagramItemViewModels = new List<ViewModelBase>();
         }

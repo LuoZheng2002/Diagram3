@@ -51,25 +51,16 @@ namespace Diagram3.ViewModels
             set { _background = value;
                 OnPropertyChanged(nameof(Background)); }
         }
-        public WrappedEvent DropEvent { get; }
-        public WrappedEvent SelectEvent { get; }
-        public WrappedEvent KeyDownEvent { get; }
-        public ICommand DropCommand { get; }
-        public ICommand SelectCommand { get; }
-        public ICommand KeyDownCommand { get; }
+        public Command DropCommand { get; }
+        public Command SelectCommand { get; }
+        public Command KeyDownCommand { get; }
         public event Action CanvasClicked;
         public event Action<object> KeyDown;
         public HierarchicalViewModel()
         {
-            DropEvent = new WrappedEvent();
-            SelectEvent = new WrappedEvent();
-            KeyDownEvent = new WrappedEvent();
-            DropEvent.Add(OnDrop);
-            SelectEvent.Add(OnSelect);
-            KeyDownEvent.Add(OnKeyDown);
-            DropCommand = new Command(DropEvent);
-            SelectCommand = new Command(SelectEvent);
-            KeyDownCommand = new Command(KeyDownEvent);
+            DropCommand = new Command(OnDrop);
+            SelectCommand = new Command(OnSelect);
+            KeyDownCommand = new Command(OnKeyDown);
             Background = Brushes.AliceBlue;
         }
         public event Action<HierarchicalViewModel, object> Dropped;//second arg: dropeventargs

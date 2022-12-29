@@ -24,8 +24,7 @@ namespace Diagram3.ViewModels
                 }
             }
         }
-        public WrappedEvent KeyDownEvent { get; }
-        public ICommand KeyDownCommand { get; }
+        public Command KeyDownCommand { get; }
         public event Action<object> KeyDown;
         public void NavigateToDiagram()
         {
@@ -37,9 +36,7 @@ namespace Diagram3.ViewModels
         {
             _model = model;
             NavigateToDiagram();
-            KeyDownEvent = new WrappedEvent();
-            KeyDownEvent.Add(OnKeyDown);
-            KeyDownCommand = new Command(KeyDownEvent);
+            KeyDownCommand = new Command(OnKeyDown);
         }
         public void OnKeyDown(object obj)
         {

@@ -9,7 +9,7 @@ namespace Diagram3
 {
     internal class Command : ICommand
     {
-        private WrappedEvent _event;
+        public event Action<object> Called;
         public event EventHandler CanExecuteChanged;
         public void OnCanExecuteChanged()
         {
@@ -22,11 +22,11 @@ namespace Diagram3
 
         public void Execute(object parameter)
         {
-            _event?.Invoke(parameter);
+            Called?.Invoke(parameter);
         }
-        public Command(WrappedEvent _event)
+        public Command(Action<object> func)
         {
-            this._event = _event;
+            Called += func;
         }
     }
 }

@@ -56,10 +56,8 @@ namespace Diagram3.ViewModels
         public string Text { get; set; }
         public ObservableCollection<HierarchicalView> HierarchicalViews { get; }
         public List<HierarchicalViewModel> HierarchicalViewModels { get; }
-        public WrappedEvent DropEvent { get; }
-        public WrappedEvent SelectEvent { get; }
-        public ICommand DropCommand { get; }
-        public ICommand SelectCommand { get; }
+        public Command DropCommand { get; }
+        public Command SelectCommand { get; }
 
         public event Action CanvasClicked;
         public event Action<object> KeyDown;
@@ -67,12 +65,8 @@ namespace Diagram3.ViewModels
         {
             HierarchicalViews = new ObservableCollection<HierarchicalView>();
             HierarchicalViewModels = new List<HierarchicalViewModel>();
-            DropEvent = new WrappedEvent();
-            SelectEvent = new WrappedEvent();
-            DropEvent.Add(OnDrop);
-            SelectEvent.Add(OnSelect);
-            DropCommand = new Command(DropEvent);
-            SelectCommand = new Command(SelectEvent);
+            DropCommand = new Command(OnDrop);
+            SelectCommand = new Command(OnSelect);
             Background = Brushes.AliceBlue;
         }
         private void AddChild(int index)
